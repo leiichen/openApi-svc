@@ -21,7 +21,12 @@ public class PageRequest {
      */
     private Integer pageSize =  10;
 
-    private Integer getOffSet() {
+    /**
+     * 偏移
+     */
+    private final Integer offset = getOffSet();
+
+    public Integer getOffSet() {
         if (pageSize == null || pageNum == null) {
             return null;
         }

@@ -5,6 +5,7 @@ import com.lei.chen.exception.BusinessException;
 import com.lei.chen.model.BO.UserBO;
 import com.lei.chen.service.UserService;
 import com.lei.chen.utils.UserHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.annotation.Resource;
@@ -13,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import static com.lei.chen.constant.UserConstant.USER_LOGIN_STATE;
 
+@Component
 public class GlobalInterceptor implements HandlerInterceptor {
-
     @Resource
     private UserService userService;
     @Override
@@ -33,7 +34,7 @@ public class GlobalInterceptor implements HandlerInterceptor {
         return true;
     }
     @Override
-    public void afterCompletion(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         UserHolder.removeUser();
     }
 }

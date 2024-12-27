@@ -52,12 +52,12 @@ public class InterfaceInfoServiceImpl implements InterfaceInfoService{
 
     @Override
     public void deleteInterfaceInfo(Long id, UserBO userBO) {
-        InterfaceInfoBO interfaceInfoBO = interfaceInfoRepository.getInterfaceById(id);
-        if (interfaceInfoBO == null) {
+        InterfaceInfoDO interfaceInfoDO = interfaceInfoRepository.getInterfaceById(id);
+        if (interfaceInfoDO == null) {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
         // 仅本人或管理员可删除
-        if (!interfaceInfoBO.getCreatedBy().equals(userBO.getUserName()) && !ADMIN_ROLE.equals(userBO.getUserRole())) {
+        if (!interfaceInfoDO.getCreatedBy().equals(userBO.getUserName()) && !ADMIN_ROLE.equals(userBO.getUserRole())) {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
         interfaceInfoRepository.delete(id);

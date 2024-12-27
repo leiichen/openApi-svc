@@ -66,12 +66,13 @@ public class UserServiceImpl implements UserService {
         String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
         // 查询用户是否存在
         UserDO userDO = userRepository.selectOne(UserBO.builder().userName(userName).userPassword(encryptPassword).build());
-        if (userDO == null) {
+        UserBO userBO = UserConverter.INSTANCE.toUserBO(userDO);
+        if (userBO == null) {
             log.info("user login failed, userAccount cannot match userPassword");
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户不存在或密码错误");
         }
-        UserVO userVO = UserConverter.INSTANCE.toUserVO(userDO);
-        request.getSession().setAttribute(USER_LOGIN_STATE, userDO);
+        UserVO userVO = UserConverter.INSTANCE.toUserVO(userBO);
+        request.getSession().setAttribute(USER_LOGIN_STATE, userBO);
         return userVO;
     }
 

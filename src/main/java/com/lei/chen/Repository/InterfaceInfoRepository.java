@@ -35,9 +35,8 @@ public class InterfaceInfoRepository {
         interfaceInfoMapper.delete(id);
     }
 
-    public InterfaceInfoBO getInterfaceById(Long id) {
-        InterfaceInfoDO interfaceInfoDO = interfaceInfoMapper.getInterfaceById(id);
-        return InterfaceInfoConverter.INSTANCE.toInterfaceInfoBO(interfaceInfoDO);
+    public InterfaceInfoDO getInterfaceById(Long id) {
+        return interfaceInfoMapper.getInterfaceById(id);
     }
 
     public void update(InterfaceInfoBO interfaceInfoBO) {

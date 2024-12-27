@@ -4,11 +4,12 @@ import com.lei.chen.common.PageRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserDO extends PageRequest {
+public class UserDO extends PageRequest implements Serializable {
     /**
      * id
      */
@@ -48,4 +49,6 @@ public class UserDO extends PageRequest {
      * 更新时间
      */
     private Date updateTime;
+
+    private static final long serialVersionUID = 1L;
 }

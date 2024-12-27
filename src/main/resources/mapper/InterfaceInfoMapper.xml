@@ -20,10 +20,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,description,
-        url,request_header,response_header,
-        status,method,updated_by,
-        created_by,create_time,update_time
+        id,`name`,description,url,request_header,response_header,status,`method`,updated_by,created_by,create_time,update_time
     </sql>
     <sql id="Base_Condition">
         <where>
@@ -153,9 +150,9 @@
         <include refid="Base_Condition"/>
         order by
         <if test="sortField != null and sortField != ''">
-            ${sortField} ${sortOrder},
+            ${sortField} ${sortOrder}
         </if>
-        limit #{getOffSet()},#{pageSize}
+        limit #{offset},#{pageSize}
     </select>
     <select id="queryCount" resultType="java.lang.Integer">
         select count(1) from interface_info

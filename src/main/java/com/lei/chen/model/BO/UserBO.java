@@ -3,6 +3,7 @@ package com.lei.chen.model.BO;
 import com.lei.chen.common.PageRequest;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -10,7 +11,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserBO extends PageRequest {
+public class UserBO extends PageRequest implements Serializable {
     /**
      * id
      */
@@ -50,4 +51,6 @@ public class UserBO extends PageRequest {
      * 更新时间
      */
     private Date updateTime;
+
+    private static final long serialVersionUID = 1L;
 }
